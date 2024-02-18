@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  stellar:
+    image: stellar/quickstart
+    volumes:
+      - "./data:/opt/stellar"  # Replace "./data" with your desired volume path
+    ports:
+      - "8000:8000"  # Horizon main HTTP port (already included)
+      - "6060:6060"  # Horizon admin port
+      - "5432:5432"  # PostgreSQL database access port
+      - "11625:11625"  # Stellar-core peer node port
+      - "11626:11626"  # Stellar-core main HTTP port
+    restart: unless-stopped
+
+networks:
+  stellar-network:
+    driver: bridge
+
+volumes:
+  data:  # Volume data persistentse
+
